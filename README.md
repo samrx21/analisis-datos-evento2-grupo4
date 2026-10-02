@@ -95,7 +95,27 @@ Las reservas no reembolsables se cancelan el 99 % de las veces. No es un efecto 
 
 Con 119 mil registros casi todo resulta "significativo", así que reportamos siempre el tamaño del efecto junto al valor p.
 
-<!-- VICTOR: pega tu sección (Fase 3) debajo de esta línea -->
+## Fase 3 · Preprocesamiento y reducción de dimensionalidad
+
+**Codificación**, según la cardinalidad y el orden de cada variable:
+
+| Técnica | Variables | Motivo |
+|---|---|---|
+| Label encoding | `hotel` | Dos categorías: no se crea un orden falso |
+| Seno y coseno | `arrival_date_month` | El mes es cíclico: diciembre queda junto a enero |
+| One-hot | `meal`, `market_segment`, `distribution_channel`, `deposit_type`, `customer_type`, `reserved_room_type` | Pocas categorías sin orden |
+| Frecuencia | `country` (178), `agent` (334) | One-hot habría creado más de 560 columnas |
+
+**Escalado.** Comparamos `MinMaxScaler`, `StandardScaler` y `RobustScaler`. Usamos logaritmo en las variables de conteo sesgadas y estandarización en todas, porque PCA depende de la varianza.
+
+**Reducción.** Antes de transformar excluimos las variables con fuga de información (`reservation_status`, `assigned_room_type`, entre otras).
+
+![Proyección PCA](figures/04_pca.png)
+
+- Sin escalar, la primera componente "explica" el 81 % de la varianza y es casi solo `lead_time`: un artefacto de las unidades.
+- Con escalado, las dos primeras componentes explican el 17,6 %, y se necesitan 27 de 53 para llegar al 80 %. **PCA comprime poco esta base**, lo que es coherente con las correlaciones bajas del EDA.
+- La segunda componente aísla por sí sola las reservas en bloque no reembolsables, sin conocer la variable objetivo.
+- t-SNE muestra que los datos se agrupan por segmento de mercado; LDA, que sí usa la etiqueta, logra la mejor separación en una dimensión.
 
 ## Hallazgos principales
 
