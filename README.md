@@ -55,7 +55,30 @@ pip install -r requirements.txt
 jupyter notebook notebooks/
 ```
 
-<!-- JUANA: pega tu sección (Fase 1) debajo de esta línea -->
+## Fase 1 · Bases exploradas y selección
+
+Exploramos tres bases de **tres tipos de dato distintos**:
+
+| Base | Tipo | Registros | Atributos | Celdas completas | Tipo de fuente |
+|---|---|---|---|---|---|
+| **A. Hotel Booking Demand** | Tabular | 119.390 | 32 | 96,6 % | Primaria para los hoteles, secundaria para nosotros |
+| B. SMS Spam Collection | Texto | 5.572 | 2 | 100 % | Secundaria (compilación de corpus anteriores) |
+| C. Fashion-MNIST (partición de prueba) | Imágenes | 10.000 | 784 | 100 % | Primaria para Zalando, secundaria para nosotros |
+
+Los repositorios desde donde se descargan (GitHub, Kaggle, UCI) cumplen el papel de fuente terciaria: no producen el dato, ayudan a encontrarlo.
+
+**Matriz de decisión** (calificación de 1 a 5 con reglas definidas antes de calificar):
+
+| Criterio | Peso | A. Hotel | B. SMS | C. Fashion-MNIST |
+|---|---|---|---|---|
+| Completitud | 20 % | 4 | 5 | 5 |
+| Relevancia (tareas del proyecto que permite hacer directamente) | 30 % | 5 | 2 | 3 |
+| Documentación | 25 % | 5 | 4 | 5 |
+| Manejabilidad | 25 % | 4 | 5 | 4 |
+| **Total ponderado** | | **4,55** | 3,85 | 4,15 |
+
+**Elegimos la base A.** No es la más completa, y eso juega a su favor: es la única con problemas reales de calidad que diagnosticar y la única que permite hacer las ocho tareas del proyecto (faltantes, atípicos, univariado numérico y categórico, multivariado, hipótesis, codificación, escalado y PCA) sin cambiar la naturaleza del dato. La base de texto exigiría procesamiento de lenguaje natural antes de aplicar casi cualquier técnica del curso, y la de imágenes llega tan curada que no deja nada que limpiar ni que codificar.
+
 
 ## Fase 2 (parte 1) · Calidad de los datos y análisis univariado
 
