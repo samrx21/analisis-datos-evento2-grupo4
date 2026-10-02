@@ -55,7 +55,9 @@ pip install -r requirements.txt
 jupyter notebook notebooks/
 ```
 
-## Fase 2 · Calidad de los datos y análisis univariado
+<!-- JUANA: pega tu sección (Fase 1) debajo de esta línea -->
+
+## Fase 2 (parte 1) · Calidad de los datos y análisis univariado
 
 | Problema | Qué encontramos | Decisión |
 |---|---|---|
@@ -70,6 +72,10 @@ jupyter notebook notebooks/
 La tasa global de cancelación pasa de 37,0 % a 27,5 % según se conserven o no las filas repetidas. Esa sensibilidad atraviesa todo el proyecto.
 
 En el análisis univariado, `lead_time` tiene asimetría positiva (media 104 días, mediana 69) y mejora con una transformación logarítmica; `adr` no. Las variables de historial son cero en más del 90 % de los casos.
+
+<!-- DAVID: pega tu sección (Fase 2, parte 2) debajo de esta línea -->
+
+<!-- VICTOR: pega tu sección (Fase 3) debajo de esta línea -->
 
 ## Hallazgos principales
 
