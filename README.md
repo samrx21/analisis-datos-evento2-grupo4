@@ -73,7 +73,27 @@ La tasa global de cancelación pasa de 37,0 % a 27,5 % según se conserven o no 
 
 En el análisis univariado, `lead_time` tiene asimetría positiva (media 104 días, mediana 69) y mejora con una transformación logarítmica; `adr` no. Las variables de historial son cero en más del 90 % de los casos.
 
-<!-- DAVID: pega tu sección (Fase 2, parte 2) debajo de esta línea -->
+## Fase 2 (parte 2) · Análisis multivariado e hipótesis
+
+![Cancelación según anticipación](figures/03_anticipacion.png)
+
+La anticipación es la variable que mejor ordena las reservas: la tasa de cancelación sube de 12 % (reservas de la misma semana) a 71 % (más de un año) en el hotel de ciudad, y el patrón se repite en el resort.
+
+![Cancelación por segmento y depósito](figures/03_segmento_deposito.png)
+
+Las reservas no reembolsables se cancelan el 99 % de las veces. No es un efecto del depósito: el 97 % viene de Portugal, el 97 % entra por grupos o agencias tradicionales y el 93 % son filas repetidas. Son reservas en bloque de operadores turísticos.
+
+**Pruebas de hipótesis** (α = 0,01 con corrección de Bonferroni para 5 pruebas):
+
+| Hipótesis | Prueba | Efecto con todas las filas | Efecto sin repetidas | Conclusión |
+|---|---|---|---|---|
+| H1 Depósito × cancelación | Chi-cuadrado | V = 0,48 | V = 0,16 | Se rechaza H0; la magnitud depende de los duplicados |
+| H2 Anticipación según cancelación | t de Welch y Mann-Whitney | d = 0,63 | d = 0,42 | Se rechaza H0; resultado robusto |
+| H3 Solicitudes especiales × cancelación | Chi-cuadrado | V = 0,26 | V = 0,13 | Se rechaza H0; resultado robusto |
+| H4 Tarifa × cancelación | t sobre r de Pearson | r = 0,048 | r = 0,133 | Se rechaza H0, pero el efecto es despreciable |
+| H5 Noches de fin de semana según cancelación | t de Welch | d = −0,003 | d = 0,137 | No se rechaza H0 con todas las filas; se rechaza sin repetidas |
+
+Con 119 mil registros casi todo resulta "significativo", así que reportamos siempre el tamaño del efecto junto al valor p.
 
 <!-- VICTOR: pega tu sección (Fase 3) debajo de esta línea -->
 
